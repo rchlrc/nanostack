@@ -7,9 +7,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(cookieParser());
 
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 
-app.get("/", function(req, res){
+app.get('/', (req, res) => {
   res.render('home');
 });
 
