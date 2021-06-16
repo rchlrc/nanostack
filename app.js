@@ -1,7 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 
 const app = express();
+
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 
@@ -11,6 +15,10 @@ app.get("/", function(req, res){
 
 app.get('/about', (req, res) => {
 	res.render('about');
+});
+
+app.get('/thankyou', (req, res) => {
+	res.render('thankyou', { name:req.cookies.name});
 });
 
 app.post('/', (req, res) => {
