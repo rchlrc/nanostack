@@ -9,9 +9,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-	collection.insertOne(req.body, (err, result) => {  
-    if (err) return console.log(err)
-    console.log('saved to database')
 	res.redirect('/thankyou');
 });
 
