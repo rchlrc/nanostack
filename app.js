@@ -13,16 +13,16 @@ app.get("/", function(req, res){
   res.render('home');
 });
 
+app.post('/', (req, res) => {
+	res.render('home');
+});
+
 app.get('/about', (req, res) => {
 	res.render('about');
 });
 
 app.get('/thankyou', (req, res) => {
 	res.render('thankyou', { name:req.cookies.name});
-});
-
-app.post('/', (req, res) => {
-	res.render('home');
 });
 
 const port = process.env.PORT || 3000;
