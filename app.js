@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-	res.render('home');
+	res.redirect('/thankyou');
 });
 
 app.get('/about', (req, res) => {
@@ -22,7 +22,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/thankyou', (req, res) => {
-	res.render('thankyou', { name:req.cookies.name});
+	res.render('thankyou', { name:req.cookies.name });
 });
 
 const port = process.env.PORT || 3000;
