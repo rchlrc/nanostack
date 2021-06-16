@@ -2,8 +2,6 @@ const express = require('express');
 
 const app = express();
 
-app.use(express.urlencoded({extended: true}));
-
 app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
@@ -23,4 +21,9 @@ app.get('/about', (req, res) => {
 
 app.get('/thankyou', (req, res) => {
 	res.render('thankyou', { name:req.cookies.name });
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log('This app is running on port' + port);
 });
