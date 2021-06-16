@@ -25,14 +25,9 @@ app.get('/thankyou', (req, res) => {
 	res.render('thankyou', { name:req.cookies.name });
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log('This app is running on port' + port);
-});
-
 const MongoClient = require('mongodb').MongoClient;
 
-const CONNECTION_URL = "mongodb+srv://rachelrc:Mn6k7f*3@cluster0.frxw3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const CONNECTION_URL = "mongodb+srv://rachelrc:Mn6k7f*3@cluster0.frxw3.mongodb.net/piccadilly?retryWrites=true&w=majority";
 const DATABASE_NAME = "piccadilly"; // you can change the database name
 var database, collection;
 
