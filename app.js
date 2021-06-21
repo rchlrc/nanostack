@@ -16,6 +16,7 @@ app.post('/', (req, res) => {
 
     console.log('saved to database')
     res.redirect('/thankyou');
+   })
 });
 
 app.get('/about', (req, res) => {
