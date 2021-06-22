@@ -1,7 +1,10 @@
 const express = require('express');
-
 const app = express();
+const https = require('https');
+const cookieParser = require('cookie-parser');
+var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
+app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
 
 app.set('view engine', 'ejs');
@@ -17,6 +20,60 @@ app.post('/', (req, res) => {
     console.log('saved to database')
     res.redirect('/thankyou');
    })
+
+  function formv3(){
+    // Create the new request 
+    var xhr = new XMLHttpRequest();
+    var url = 'https://api.hsforms.com/submissions/v3/integration/submit/5688787/:formGuid'
+    
+    // Example request JSON:
+    var data = {
+      "fields": [
+        {
+          "name": "firstname",
+          "value": req.body.user_name
+        },
+        {
+          "name": "email",
+          "value": req.body.user_email
+        }
+        {
+          "name": "message",
+          "value": req.body.user_message
+        }
+      ],
+      "context": {
+        "hutk": req.cookies.hubspotutk,
+        "pageUri": "https://nameless-taiga-86741.herokuapp.com/",
+        "pageName": "Portfolio App"
+      }
+    }
+
+    var final_data = JSON.stringify(data)
+
+    xhr.open('POST', url);
+    // Sets the value of the 'Content-Type' HTTP request headers to 'application/json'
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) { 
+            console.log(xhr.responseText); // Returns a 200 response if the submission is successful.
+        } else if (xhr.readyState == 4 && xhr.status == 400){ 
+            console.log(xhr.responseText); // Returns a 400 error the submission is rejected.          
+        } else if (xhr.readyState == 4 && xhr.status == 403){ 
+            console.log(xhr.responseText); // Returns a 403 error if the portal isn't allowed to post submissions.           
+        } else if (xhr.readyState == 4 && xhr.status == 404){ 
+            console.log(xhr.responseText); //Returns a 404 error if the formGuid isn't found     
+        }
+       }
+
+
+    // Sends the request 
+    
+    xhr.send(final_data)
+ }
+
+ formv3();
 });
 
 app.get('/about', (req, res) => {
