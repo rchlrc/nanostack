@@ -24,7 +24,7 @@ app.post('/', (req, res) => {
   function formv3(){
     // Create the new request 
     var xhr = new XMLHttpRequest();
-    var url = 'https://api.hsforms.com/submissions/v3/integration/submit/5688787/:formGuid'
+    var url = 'https://api.hsforms.com/submissions/v3/integration/submit/5688787/95ccc060-5fa3-4b63-a9cf-4001f3219a23'
     
     // Example request JSON:
     var data = {
