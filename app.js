@@ -74,6 +74,7 @@ app.post('/', (req, res) => {
 
  formv3();
 });
+});
 
 app.get('/about', (req, res) => {
 	res.render('about');
