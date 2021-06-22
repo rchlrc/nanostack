@@ -19,7 +19,6 @@ app.post('/', (req, res) => {
 
     console.log('saved to database')
     res.redirect('/thankyou');
-   })
 
   function formv3(){
     // Create the new request 
@@ -36,7 +35,7 @@ app.post('/', (req, res) => {
         {
           "name": "email",
           "value": req.body.user_email
-        }
+        },
         {
           "name": "message",
           "value": req.body.user_message
